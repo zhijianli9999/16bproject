@@ -8,26 +8,22 @@ The idea of evaluating water shortage risk is certainly not new. In this section
 
 In 2021, the California Department of Water Resources (DWR) released its [Drought and Water Shortage Risk Explorer](https://tableau.cnra.ca.gov/t/DWR_IntegratedDataAnalysisBranch/views/SmallWaterSystemRisk-March2021/Dashboard?%3Aembed=y&%3AisGuestRedirectFromVizportal=y), containing an interactive web app mapping out their risk assessment score of wells in the state. The main difference between this effort and my proposed project is that the DWR's risk assessment system is not a statistical model. Instead, it is a weighted average of risk "scores" obtained through "an extensive stakeholder participatory process", with the weights similarly determined via discussions. This scoring system is detailed in [Part 2 Appendix 1](https://water.ca.gov/-/media/DWR-Website/Web-Pages/Programs/Water-Use-And-Efficiency/Urban-Water-Use-Efficiency/CDAG/Part-2-Appendix-1-Scoring-Method-Final.pdf) of DWR's [Final Report](https://tableau.cnra.ca.gov/t/DWR_IntegratedDataAnalysisBranch/views/SmallWaterSystemRisk-March2021/methods?%3AshowAppBanner=false&%3Adisplay_count=n&%3AshowVizHome=n&%3Aorigin=viz_share_link&%3AisGuestRedirectFromVizportal=y&%3Aembed=y) regarding their efforts to satisfy Assembly Bill 1668, the legislation that prompted this project. Although the goals and methodology of the DWR's project differ drastically from mine, it incorporates an extensive list of risk factors which can help augment the input data for my model.
 
-A second resource that I came across is Hussein et al. (2020)[^1], which
+A second existing project that I came across is a study by Hussein et al. (2020)[^1]. The input data used were 174 monthly satellite images, along with 11 manually-selected hydrological features. The main machine learning task in this study is to extract features from images to predict the spatial distribution of groundwater. For my project, I will look to test out some of the machine learning methods used in this literature and try to incorporate the more granular data available in California.
 
 [^1]: Hussein, Eslam A., Christopher Thron, Mehrdad Ghaziasgar, Antoine Bagula, and Mattia Vaccari. 2020. "Groundwater Prediction Using Machine-Learning Tools" Algorithms 13, no. 11: 300. https://doi.org/10.3390/a13110300
+
 ## Planned Deliverables
 
 The most ambitious version of my project would consist of three main components. These are, starting from the user end, an interactive geographic visualization to explore the risk of water shortages, a machine learning model to predict water shortages, and a pipeline to gather up-to-date data on the risk factors. The core component would be the machine learning model, so a partial success would be to build a predictive model with inputs from multiple datasets. The output of the predictive model would be, for each well in the state of California, an estimated probability of water shortage, say, for the next six months. The visualization would display the risk calculations in an interactive map that displays the probability of failure along with information about the risk factors. Potentially, I would like to automatically update the model with periodically collected data, such as [seasonal groundwater level data](https://data.ca.gov/dataset/groundwater-level-seasonal-change-points) measured by the California Department of Water Resources, and other datasets from [data.ca.gov](data.ca.gov). In terms of tools, I plan to build the predictive model in a Jupyter notebook, and do the visualization in a web app.
 
 ## Resources Required
 
-The data   [Household Water Supply Shortage Reporting System](https://data.ca.gov/dataset/household-water-supply-shortage-reporting-system-data)
-
-What resources do you need in order to complete your project? Data? Computing power? An account with a specific service?
-
-Please pay special attention to the question of data. If your project idea involves data, include at least one link to a data set you can use. It’s also acceptable to link to a website from which you intend to scrape the data you will use (although note that high-quality scraping is a lot of work).
-
-If you can’t find data for your original idea, that’s ok! Think of something related to your group’s interests for which you can find data.
-
-Most projects should involve data in some way, but certain projects may not require data. Ask me if you’re not sure.
+The project will require a few classes of data. First, the event that I would like to predict is the occurrence of dry wells, documented in the [Household Water Supply Shortage Reporting System](https://data.ca.gov/dataset/household-water-supply-shortage-reporting-system-data). This dataset contains coordinates and dates of 3765 reports of water shortages in California from 2014 onwards. I also have [data on the universe of wells in California](https://data.ca.gov/dataset/periodic-groundwater-level-measurements), along with groundwater levels which the Department of Water Resources measures periodically. Data on [groundwater quality](https://data.ca.gov/dataset/ground-water-water-quality-results), weather, fires are all available and may also be relevant.
 
 ## Tools and Skills Required
+
+
+
 What skills will you need? Machine learning, database management, complex visualization, something else? Do a bit of research into which Python packages accomplish the tasks you are going to need. Feel free to look ahead at what we’re going to do in the remainder of the course – you’re likely to find some of the packages you’ll need there!
 
 What You Will Learn
