@@ -326,6 +326,6 @@ fig = px.scatter_mapbox(mt_preds,
                         zoom=5)
 # fig.show()
 ```
-{% include m4.html %}
+{% include output/m4.html %}
 
 In conclusion, this exercise has demonstrated that periodic groundwater level measurements contain useful signals for well shortages. In particular, this prediction task calls for incorporating both spatial and temporal lags. To extend the work of this project, future efforts could improve the method of geographical aggregation, take into account climate (especially seasonality), and include more detailed information on local hydrology such as the proximity to water features. As a concrete recommendation, the relevant authorities would do well to improve data availability and linkage, and to judiciously incorporate hydrological data into their existing risk-prediction systems.
