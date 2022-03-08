@@ -3,7 +3,7 @@
 #### *Predicting water shortages in California's Central Valley using periodic water level data*
 
 
-California's Central Valley produces 1/4 of the nation's food and its supplies 1/5 of national groundwater demand.[^1] However, the region is prone to drought and water shortages. Furthermore, predicting these water shortages is difficult. Climate change has thrown off the statistical models resulting in huge errors in official water supply predictions, including a 68% error in the predictions for the Sacramento Valley region this year.[^2] Perhaps in response to the poor performance of these complex hydrological models, the California Department of Water Resources recently released its [Drought and Water Shortage Risk Explorer](https://tableau.cnra.ca.gov/t/DWR_IntegratedDataAnalysisBranch/views/SmallWaterSystemRisk-March2021/Dashboard?%3Aembed=y&%3AisGuestRedirectFromVizportal=y), containing an interactive map of the shortage risks of wells in the state. However, this risk assessment does not incorporate past data into a statistical model. 
+California's Central Valley produces 1/4 of the nation's food and its supplies 1/5 of national groundwater demand.[^1] However, the region is prone to drought and water shortages. Furthermore, predicting these water shortages is difficult. Climate change has thrown off the statistical models resulting in huge errors in official water supply predictions, including a 68% error in the predictions for the Sacramento Valley region this year.[^2] Perhaps in response to the poor performance of these complex hydrological models, the California Department of Water Resources recently released its [Drought and Water Shortage Risk Explorer](https://tableau.cnra.ca.gov/t/DWR_IntegratedDataAnalysisBranch/views/SmallWaterSystemRisk-March2021/Dashboard?%3Aembed=y&%3AisGuestRedirectFromVizportal=y), containing an interactive map of the shortage risks of wells in the state. However, this risk assessment does not incorporate past data into a statistical model.
 
 This project uses the [Household Water Supply Shortage Reporting System](https://data.ca.gov/dataset/household-water-supply-shortage-reporting-system-data), which logs 3765 reports of water shortages in California from 2014 onwards. We combine this with a dataset of all wells in the state. The predictors used are the [periodic groundwater level measurements](https://data.ca.gov/dataset/periodic-groundwater-level-measurements) from the Department of Water Resources.
 
@@ -45,7 +45,7 @@ fig = px.scatter_mapbox(wells.dropna(subset=['gis_gama_study_area']).sample(frac
                         zoom=5)
 # fig.show()
 ```
-
+{% include gamaareas.html %}
 
 ```python
 stations = pd.read_csv('../cleaned/st.csv')
@@ -73,7 +73,7 @@ fig = px.scatter_mapbox(stations,
                         zoom=4)
 # fig.show()
 ```
-
+{% include stations.html %}
 
 ```python
 shortages = pd.read_csv('../cleaned/sh.csv')
@@ -112,6 +112,7 @@ fig = px.scatter_mapbox(stacked.sample(frac=0.2),
                         zoom=5)
 fig.write_html("../output/stacked.html")
 ```
+{% include stacked.html %}
 
 The boundaries of our study are defined according to GAMA study areas that fall within the Central Valley. They were picked for its economic significance and density of measurement stations.
 
@@ -249,6 +250,8 @@ fig = px.scatter_mapbox(d,
 # fig.show()
 ```
 
+{% include sh_frac.html %}
+
 For the model, we use PySAL, a package for spatial analysis.
 
 Having done the data processing and aggregation, each unit of observation in our dataset is roughly a 3 mile by 3 mile square, with the predictors being the average change in groundwater level in that square since 2013, and the dependent variable being the relative frequency of shortages.
@@ -271,6 +274,7 @@ fig = px.scatter_mapbox(m_preds,
                         title='Baseline linear regression model')
 # fig.show()
 ```
+{% include m1.html %}
 
 Qualitatively, this model doesn't seem to produce very good predictions. To improve the model accuracy, we include *spatial lags*. In other words, we include as predictors a weighted average of the neighbors of each square. As our data is (roughly) carved into a grid, it makes the most sense to include the lags from the 4 nearest neighbors and 8 nearest neighbors.
 
@@ -286,6 +290,7 @@ fig = px.scatter_mapbox(m_preds,
                         title='Model including lags from 4 nearest neighbors')
 # fig.show()
 ```
+{% include m2.html %}
 
 
 ```python
@@ -300,6 +305,7 @@ fig = px.scatter_mapbox(m_preds,
                        )
 # fig.show()
 ```
+{% include m3.html %}
 
 The models with 4 and 8 nearest neighbors produce predictions that look close to the shortage map, and have lower mean squared errors. The coefficients for the spatial lags are also negative and statistically significant.
 
@@ -320,5 +326,6 @@ fig = px.scatter_mapbox(mt_preds,
                         zoom=5)
 # fig.show()
 ```
+{% include m4.html %}
 
 In conclusion, this exercise has demonstrated that periodic groundwater level measurements contain useful signals for well shortages. In particular, this prediction task calls for incorporating both spatial and temporal lags. To extend the work of this project, future efforts could improve the method of geographical aggregation, take into account climate (especially seasonality), and include more detailed information on local hydrology such as the proximity to water features. As a concrete recommendation, the relevant authorities would do well to improve data availability and linkage, and to judiciously incorporate hydrological data into their existing risk-prediction systems.
