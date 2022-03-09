@@ -4,11 +4,12 @@
 
 #### To-do
 - clean up visualizations (labels, titles, etc)
-- add more comments
+- add more comments to data processing code
+- add more explanations and model results to report
 
 ## Project Dry Wells
 The `code` folder contains:
-- `visualize.ipynb`, which includes the results and serves as the project report (the geographical visualizations are not included for now and are in the `output` folder).
+- `visualize.ipynb`, which serves as the project report (the geographical visualizations are not included for now and are in the `output` folder).
 - `clean.py`, which cleans the data in the `data` folder and outputs them to the `cleaned` folder.
 - `predict.py`, which runs the prediction models.
 
