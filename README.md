@@ -1,8 +1,15 @@
+#### Questions for pre-submission
+- What would be a good medium to present the results/predictions? I originally wanted to build a web app but now I think the only user interaction would be to explore the geographical visualizations, so maybe a blog post would suffice?
+- What else should I include? More exploratory data analysis? Better ways to visualize the time trends?
+
+## Project Dry Wells
 The `code` folder contains:
-- `clean.py`, which cleans the data in the `data` folder
-- `predict.py`, which runs the prediction models
-- `visualize.ipynb`, which includes the results and serves as the project report
+- `visualize.ipynb`, which includes the results and serves as the project report (the geographical visualizations are not included for now and are in the `output` folder).
+- `clean.py`, which cleans the data in the `data` folder and outputs them to the `cleaned` folder.
+- `predict.py`, which runs the prediction models.
 
-The `cleaned` and `data` folders contain data.
+The `data` folder contains the raw data files on wells, shortage reports, and station measurements downloaded from the internet.
 
-The `output` folder contains the visualizations in HTML files which I need to include in the blog post.
+The `cleaned` folder contains cleaned datasets for the model.
+
+The `output` folder contains the visualizations in HTML files.
