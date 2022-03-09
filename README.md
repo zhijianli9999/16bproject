@@ -2,6 +2,10 @@
 - What would be a good medium to present the results/predictions? I originally wanted to build a web app but now I think the only user interaction would be to explore the geographical visualizations, so maybe a blog post would suffice?
 - What else should I include? More exploratory data analysis? Better ways to visualize the time trends?
 
+#### To-do
+- clean up visualizations (labels, titles, etc)
+- add more comments
+
 ## Project Dry Wells
 The `code` folder contains:
 - `visualize.ipynb`, which includes the results and serves as the project report (the geographical visualizations are not included for now and are in the `output` folder).
