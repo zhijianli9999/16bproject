@@ -1,15 +1,9 @@
-#### Questions for pre-submission
-- What would be a good medium to present the results/predictions? I originally wanted to build a web app but now I think the only user interaction would be to explore the geographical visualizations, so maybe a blog post would suffice?
-- What else should I include? More exploratory data analysis? Better ways to visualize the time trends?
-
-#### To-do
-- clean up visualizations (labels, titles, etc)
-- add more comments to data processing code
-- add more explanations and model results to report
-
 ## Project Dry Wells
+
+The final project report can be found [on my course blog](https://zhijianli9999.github.io/project/).
+
 The `code` folder contains:
-- `visualize.ipynb`, which serves as the project report (the geographical visualizations are not included for now and are in the `output` folder).
+- `visualize.ipynb`, which is the notebook on which the blog post (project report) is based.
 - `clean.py`, which cleans the data in the `data` folder and outputs them to the `cleaned` folder.
 - `predict.py`, which runs the prediction models.
 
